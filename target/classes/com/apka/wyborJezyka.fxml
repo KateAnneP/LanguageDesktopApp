@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.WyborJezykaController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+         <children>
+            <Button fx:id="przycisk_wybor" layoutX="416.0" layoutY="308.0" mnemonicParsing="false" onAction="#wybierzJezykAction" prefHeight="56.0" prefWidth="149.0" text="Wybierz" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Label layoutX="29.0" layoutY="28.0" prefHeight="27.0" prefWidth="224.0" text="Wybierz język z listy:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Label>
+            <TableView fx:id="lista_jezyki" layoutX="175.0" layoutY="83.0" prefHeight="200.0" prefWidth="241.0">
+              <columns>
+                <TableColumn fx:id="kol_jezyki" editable="false" prefWidth="240.0" resizable="false" />
+              </columns>
+            </TableView>
+         </children></Pane>
+   </children>
+</AnchorPane>

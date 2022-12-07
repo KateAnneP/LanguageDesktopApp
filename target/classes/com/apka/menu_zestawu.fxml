@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.MenuZestawuController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+         <children>
+            <Button fx:id="przycisk_fiszki" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlFiszkiAction" prefHeight="228.0" prefWidth="176.0" text="Fiszki">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="przycisk_pisanie" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlPisanieAction" prefHeight="228.0" prefWidth="176.0" text="Pisanie">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="przycisk_lista" layoutX="400.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlListeAction" prefHeight="228.0" prefWidth="176.0" text="Lista słówek">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="przycisk_zamknij" layoutX="14.0" layoutY="320.0" mnemonicParsing="false" onAction="#zamknijAction" prefHeight="47.0" prefWidth="176.0" text="Zamknij aplikację">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_zmien_jezyk" layoutX="207.0" layoutY="320.0" mnemonicParsing="false" onAction="#zmienJezykAction" prefHeight="47.0" prefWidth="176.0" text="Zmień język">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_zmien_zestaw" layoutX="400.0" layoutY="320.0" mnemonicParsing="false" onAction="#zmienZestawAction" prefHeight="47.0" prefWidth="176.0" text="Zmień zestaw">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+   </children>
+</AnchorPane>

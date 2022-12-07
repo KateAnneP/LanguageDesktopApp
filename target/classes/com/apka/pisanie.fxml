@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.PisanieController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="156.0">
+            <children>
+                <Button fx:id="przycisk_zamknij" layoutX="-1.0" layoutY="361.0" mnemonicParsing="false" onAction="#zamknijAction" prefHeight="39.0" prefWidth="156.0" text="Zamknij aplikację">
+                    <font>
+                        <Font name="System Italic" size="14.0" />
+                    </font></Button>
+                <Button fx:id="przycisk_zmien_zestaw" layoutX="-1.0" layoutY="14.0" mnemonicParsing="false" onAction="#zmienZestawAction" prefHeight="39.0" prefWidth="156.0" text="Zmień zestaw">
+                    <font>
+                        <Font name="System Italic" size="18.0" />
+                    </font></Button>
+                <Button fx:id="przycisk_zmien_jezyk" layoutY="73.0" mnemonicParsing="false" onAction="#zmienJezykAction" prefHeight="39.0" prefWidth="156.0" text="Zmień język">
+                    <font>
+                        <Font name="System Italic" size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+        <Pane layoutX="156.0" prefHeight="400.0" prefWidth="446.0">
+            <Label fx:id="etykieta_jezyk1" layoutX="24.0" layoutY="112.0" text="jezyk1">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font></Label>
+            <TextField fx:id="pole_jezyk1" layoutX="120.0" layoutY="99.0" prefHeight="53.0" prefWidth="228.0">
+                <font>
+                    <Font name="System Italic" size="14.0" />
+                </font>
+            </TextField>
+            <TextField fx:id="pole_jezyk2" layoutX="120.0" layoutY="167.0" onKeyPressed="#onEnter" prefHeight="53.0" prefWidth="228.0">
+                <font>
+                    <Font name="System Italic" size="14.0" />
+                </font>
+            </TextField>
+            <Button layoutX="249.0" layoutY="21.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="170.0" text="Zamień kolejność">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Button>
+            <Label fx:id="etykieta_jezyk2" layoutX="24.0" layoutY="180.0" text="jezyk2">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Label>
+            <Button fx:id="przycisk_zatwierdz" layoutX="290.0" layoutY="238.0" mnemonicParsing="false" onAction="#zatwierdzAction" prefHeight="39.0" prefWidth="129.0" text="Zatwierdź">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Button>
+            <Button fx:id="przycisk_odp" layoutX="77.0" layoutY="238.0" mnemonicParsing="false" onAction="#pokazOdpowiedzAction" prefHeight="39.0" prefWidth="194.0" text="Wyświetl odpowiedź" visible="false">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Button>
+            <Button fx:id="przycisk_nastepny" layoutX="22.0" layoutY="340.0" mnemonicParsing="false" onAction="#wczytajNastepnyAction" prefHeight="39.0" prefWidth="213.0" text="Następny zestaw w kolejności" visible="false">
+                <font>
+                    <Font name="System Italic" size="14.0" />
+                </font>
+            </Button>
+            <Label fx:id="etykieta_odliczanie" layoutX="22.0" layoutY="244.0" prefHeight="27.0" prefWidth="83.0" text="odliczanie" textFill="#bf0512">
+                <font>
+                    <Font name="System Italic" size="18.0" />
+                </font>
+            </Label>
+        </Pane>
+    </children>
+</AnchorPane>

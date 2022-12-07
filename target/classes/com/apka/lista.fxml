@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.ListaController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="156.0">
+            <children>
+                <Button fx:id="przycisk_zamknij" layoutX="-1.0" layoutY="361.0" mnemonicParsing="false" onAction="#zamknijAction" prefHeight="39.0" prefWidth="156.0" text="Zamknij aplikację">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Button>
+                <Button fx:id="przycisk_zmien_zestaw" layoutX="-1.0" layoutY="14.0" mnemonicParsing="false" onAction="#zmienZestawAction" prefHeight="39.0" prefWidth="156.0" text="Zmień zestaw" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+                <Button fx:id="przycisk_zmien_jezyk" layoutY="73.0" mnemonicParsing="false" onAction="#zmienJezykAction" prefHeight="39.0" prefWidth="156.0" text="Zmień język">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            </children>
+        </Pane>
+        <Pane layoutX="156.0" prefHeight="400.0" prefWidth="446.0">
+            <Button fx:id="przycisk_nastepny" layoutX="245.0" layoutY="333.0" mnemonicParsing="false" onAction="#wczytajNastepnyAction" prefHeight="39.0" prefWidth="183.0" text="Następny zestaw">
+            <font>
+               <Font name="System Italic" size="12.0" />
+            </font></Button>
+         <Button fx:id="przycisk_poprzedni" layoutX="18.0" layoutY="333.0" mnemonicParsing="false" onAction="#wczytajPoprzedniAction" prefHeight="39.0" prefWidth="183.0" text="Poprzedni zestaw">
+            <font>
+               <Font name="System Italic" size="12.0" />
+            </font></Button>
+         <Button fx:id="przycisk_powrot" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" onAction="#powrotAction" prefHeight="39.0" prefWidth="156.0" text="Powrót">
+            <font>
+               <Font name="System Italic" size="18.0" />
+            </font></Button>
+         <TableView fx:id="lista_slowka" layoutX="18.0" layoutY="65.0" prefHeight="258.0" prefWidth="410.0">
+           <columns>
+             <TableColumn fx:id="kolumna_slowko" editable="false" prefWidth="205.0" text="Słówko" />
+             <TableColumn fx:id="kolumna_tlumaczenie" editable="false" prefWidth="204.0" text="Tłumaczenie" />
+           </columns>
+         </TableView>
+        </Pane>
+    </children>
+</AnchorPane>

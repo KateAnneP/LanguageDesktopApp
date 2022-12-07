@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.LogowanieController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+         <children>
+            <Button fx:id="przycisk_powrot" layoutX="76.0" layoutY="288.0" mnemonicParsing="false" onAction="#powrotAction" prefHeight="47.0" prefWidth="140.0" text="Wyjście">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Button fx:id="przycisk_zaloguj" layoutX="386.0" layoutY="288.0" mnemonicParsing="false" onAction="#zalogujAction" prefHeight="47.0" prefWidth="140.0" text="Zaloguj">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
+            <Label layoutX="197.0" layoutY="112.0" text="Wpisz nazwę użytkownika:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="252.0" layoutY="195.0" text="Wpisz hasło:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pole_login" layoutX="173.0" layoutY="147.0" prefHeight="38.0" prefWidth="256.0">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="pole_haslo" layoutX="173.0" layoutY="228.0" prefHeight="38.0" prefWidth="256.0">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

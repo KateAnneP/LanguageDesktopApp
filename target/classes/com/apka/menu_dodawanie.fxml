@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.MenuDodawanieController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+         <children>
+            <TableView fx:id="tabela_kategorie" layoutX="54.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="kolumna_kategoria" prefWidth="199.0" text="kategorie" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tabela_zestawy" layoutX="354.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="kolumna_zestawy" prefWidth="199.0" text="zestawy" />
+              </columns>
+            </TableView>
+            <Button fx:id="przycisk_powrot" layoutX="24.0" layoutY="318.0" mnemonicParsing="false" onAction="#powrotAction" prefHeight="46.0" prefWidth="140.0" text="Powrót">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_zatwierdz" layoutX="425.0" layoutY="318.0" mnemonicParsing="false" onAction="#zatwierdzAction" prefHeight="46.0" prefWidth="140.0" text="Zatwierdź">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="48.0" layoutY="24.0" prefHeight="52.0" prefWidth="180.0" text="Wybierz kategorię, do której chcesz dodać słówka:" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="354.0" layoutY="30.0" text="Wybierz zestaw:">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="przycisk_nowa_kategoria" layoutX="194.0" layoutY="318.0" mnemonicParsing="false" onAction="#dodajNowaKategorieAction" prefHeight="46.0" prefWidth="200.0" text="Dodaj nową kategorię">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+   </children>
+</AnchorPane>

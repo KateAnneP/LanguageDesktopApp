@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.MenuController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+         <children>
+            <Button fx:id="przycisk_zmiana_jezyka" layoutX="213.0" layoutY="319.0" mnemonicParsing="false" onAction="#zmienJezykAction" prefHeight="48.0" prefWidth="164.0" text="Zmień język">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_kategorie" layoutX="138.0" layoutY="28.0" mnemonicParsing="false" onAction="#wybierzKategorieAction" prefHeight="67.0" prefWidth="314.0" text="Wybierz wg. kategorii słówek" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_zestawy" layoutX="138.0" layoutY="110.0" mnemonicParsing="false" onAction="#wybierzZestawAction" prefHeight="67.0" prefWidth="314.0" text="Wybierz wg. zestawu" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_wszystkie_slowka" layoutX="138.0" layoutY="195.0" mnemonicParsing="false" onAction="#wyswietlWszystkieSlowkaAction" prefHeight="67.0" prefWidth="314.0" text="Wszystkie słówka z tego języka" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="przycisk_zamknij" layoutX="23.0" layoutY="319.0" mnemonicParsing="false" onAction="#zamknijAction" prefHeight="48.0" prefWidth="164.0" text="Zamknij aplikację">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Button>
+            <Button fx:id="przycisk_dodaj_slowka" layoutX="406.0" layoutY="319.0" mnemonicParsing="false" onAction="#dodajSlowkaAction" prefHeight="48.0" prefWidth="164.0" text="Dodaj słówka">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
