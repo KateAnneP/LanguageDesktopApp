@@ -45,6 +45,7 @@ public class FiszkaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -55,6 +56,7 @@ public class FiszkaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -74,7 +76,7 @@ public class FiszkaController implements Initializable {
     public void wsteczAction(ActionEvent actionEvent) {
         if(i>0)
         {
-            i++;
+            i--;
             pole_fiszka.setText(slowka.get(i).getSlowko());
         }
     }
@@ -123,7 +125,7 @@ public class FiszkaController implements Initializable {
         String slowko, tlumaczenie;
 
         try {
-            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND jezyk='"+ id_jezyka +"';");
+            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,zestawy.jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND zestawy.jezyk='"+ id_jezyka +"';");
             while (wynik.next()) {
                 slowko = wynik.getString(1);
                 tlumaczenie = wynik.getString(2);

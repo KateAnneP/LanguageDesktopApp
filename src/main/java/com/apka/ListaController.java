@@ -10,16 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ListaController implements Initializable {
@@ -33,6 +34,8 @@ public class ListaController implements Initializable {
     @FXML public TableColumn kolumna_slowko;
     @FXML public TableColumn kolumna_tlumaczenie;
     @FXML public TableView lista_slowka;
+    @FXML public Button przycisk_usun;
+    @FXML public TextArea podpowiedz;
 
     Mysql baza = MainApplication.getInstance().getSql();
     ObservableList<Fiszka> slowka = FXCollections.observableArrayList();
@@ -41,11 +44,12 @@ public class ListaController implements Initializable {
 
     @FXML
     public void powrotAction(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("wyborKategorii.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("menu_zestawu.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -56,6 +60,7 @@ public class ListaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -66,6 +71,7 @@ public class ListaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -83,6 +89,59 @@ public class ListaController implements Initializable {
     public void wczytajNastepnyAction(ActionEvent actionEvent) throws IOException {
         wczytajNastepnyZestaw();
         lista_slowka.itemsProperty().setValue(slowka); //albo lista_slowka.refresh();
+    }
+
+    @FXML
+    public void usunWybraneSlowkoAction(ActionEvent actionEvent) {
+        String slowko = "";
+        String tlumaczenie = "";
+        slowko = kolumna_slowko.getCellData(lista_slowka.getSelectionModel().getSelectedItem()).toString();
+        tlumaczenie = kolumna_tlumaczenie.getCellData(lista_slowka.getSelectionModel().getSelectedItem()).toString();
+
+        if(!slowko.equals("") && !tlumaczenie.equals(""))
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Warning!!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Czy na pewno chcesz usunąć ten element?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (!result.isPresent()) {}
+            else if(result.get() == ButtonType.OK)
+            {
+                System.out.println("Usunięto: " + slowko);
+                //baza.update("DELETE FROM slowka WHERE slowko='"+ slowko +"' AND tlumaczenie='"+ tlumaczenie +"';");
+
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                alert1.setTitle("Warning!!!");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Czy na pewno chcesz usunąć ten element?");
+                alert1.showAndWait();
+            }
+            else if(result.get() == ButtonType.CANCEL) {
+                System.out.println("Zaniechano usuwania xD");
+            }
+        }
+        else
+        {
+            System.out.println("Nie wybrano nic do usunięcia");
+            podpowiedz.setWrapText(true);
+            podpowiedz.setText("Nie wybrano nic do usunięcia");
+            podpowiedz.setVisible(true);
+        }
+        lista_slowka.refresh();
+    }
+
+    @FXML
+    public void wyswietlPodpowiedzUsuwanieAction(MouseEvent mouseEvent) {
+        podpowiedz.setWrapText(true);
+        podpowiedz.setText("Aby usunąć słówko z zestawu, kliknij pozycję na liście i zatwierdź wybór przyciskiem");
+        podpowiedz.setVisible(true);
+    }
+
+    @FXML
+    public void schowajPodpowiedzAction(MouseEvent mouseEvent) {
+        podpowiedz.setVisible(false);
     }
 
     public void wczytajNastepnyZestaw()
@@ -131,7 +190,7 @@ public class ListaController implements Initializable {
     {
         String slowko, tlumaczenie;
         try {
-            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND jezyk='"+ id_jezyka +"';");
+            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,zestawy.jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND zestawy.jezyk='"+ id_jezyka +"';");
             while (wynik.next()) {
                 slowko = wynik.getString(1);
                 tlumaczenie = wynik.getString(2);
@@ -204,4 +263,5 @@ public class ListaController implements Initializable {
         kolumna_slowko.setCellValueFactory(new PropertyValueFactory<Fiszka, String>("slowko"));
         kolumna_tlumaczenie.setCellValueFactory(new PropertyValueFactory<Fiszka, String>("tlumaczenie"));
     }
+
 }

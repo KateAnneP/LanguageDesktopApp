@@ -41,6 +41,12 @@
              <TableColumn fx:id="kolumna_tlumaczenie" editable="false" prefWidth="204.0" text="Tłumaczenie" />
            </columns>
          </TableView>
+         <Button fx:id="przycisk_usun" layoutX="308.0" layoutY="14.0" mnemonicParsing="false" onAction="#usunWybraneSlowkoAction" onMouseEntered="#wyswietlPodpowiedzUsuwanieAction" onMouseExited="#schowajPodpowiedzAction" prefHeight="39.0" prefWidth="120.0" text="Usuń">
+            <font>
+               <Font name="System Italic" size="18.0" />
+            </font>
+         </Button>
+         <TextArea fx:id="podpowiedz" editable="false" layoutX="60.0" layoutY="60.0" prefHeight="80.0" prefWidth="250.0" visible="false" />
         </Pane>
     </children>
 </AnchorPane>

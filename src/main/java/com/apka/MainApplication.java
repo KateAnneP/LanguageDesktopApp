@@ -33,6 +33,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Aplikacja do nauki języków");
         stage.setScene(scene);
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
