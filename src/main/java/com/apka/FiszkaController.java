@@ -28,6 +28,7 @@ public class FiszkaController implements Initializable {
     @FXML public Button przycisk_dalej;
     @FXML public Button przycisk_zmien_jezyk;
     @FXML public Button przycisk_zmien_zestaw;
+    @FXML public Button przycisk_powrot;
 
     Mysql baza = MainApplication.getInstance().getSql();
 
@@ -45,6 +46,7 @@ public class FiszkaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -55,6 +57,18 @@ public class FiszkaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
+        stage.show();
+    }
+
+    @FXML
+    public void powrotAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("menu_zestawu.fxml"));
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -74,7 +88,7 @@ public class FiszkaController implements Initializable {
     public void wsteczAction(ActionEvent actionEvent) {
         if(i>0)
         {
-            i++;
+            i--;
             pole_fiszka.setText(slowka.get(i).getSlowko());
         }
     }
@@ -123,7 +137,7 @@ public class FiszkaController implements Initializable {
         String slowko, tlumaczenie;
 
         try {
-            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND jezyk='"+ id_jezyka +"';");
+            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,zestawy.jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND zestawy.jezyk='"+ id_jezyka +"';");
             while (wynik.next()) {
                 slowko = wynik.getString(1);
                 tlumaczenie = wynik.getString(2);

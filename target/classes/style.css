@@ -1,8 +1,20 @@
 .label {
-    -fx-font-family: fantasy;
-    -fx-text-fill: #DF454;
+
 }
 
 .button {
+    -fx-background-color: #7fa803;
+    -fx-text-fill: white;
+    -fx-border-radius: 2px;
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+.table-view .table-cell {
+    -fx-font-size: 15px;
+}
+
+.text-field {
 
 }

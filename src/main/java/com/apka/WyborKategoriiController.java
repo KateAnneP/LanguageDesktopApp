@@ -43,21 +43,24 @@ public class WyborKategoriiController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Jezyk> kategorie = FXCollections.observableArrayList();
+        ObservableList<Kategoria> kategorie = FXCollections.observableArrayList();
         String k;
+        int id;
 
         try
         {
             ResultSet wynik = baza.getResult("SELECT * FROM kategorie;");
             while(wynik.next())
             {
+                id = wynik.getInt(1);
                 k = wynik.getString(2);
-                kategorie.add(new Jezyk(k));
+                kategorie.add(new Kategoria(k,id));
             }
         }
         catch (SQLException e)
@@ -66,6 +69,6 @@ public class WyborKategoriiController implements Initializable {
         }
 
         lista_kategorie.itemsProperty().setValue(kategorie);
-        kol_kategoria.setCellValueFactory(new PropertyValueFactory<Jezyk, String>("jezyk"));
+        kol_kategoria.setCellValueFactory(new PropertyValueFactory<Kategoria, String>("kategoria"));
     }
 }

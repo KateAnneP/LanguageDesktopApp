@@ -42,21 +42,25 @@ public class WyborZestawuController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Jezyk> zestawy = FXCollections.observableArrayList();
-        String z;
+        ObservableList<Zestaw> zestawy = FXCollections.observableArrayList();
+        String z, jezyk_zestawu;
+        int id;
 
         try
         {
-            ResultSet wynik = baza.getResult("SELECT zestawy.nazwa,owner,jezyki.jezyk FROM zestawy JOIN jezyki ON zestawy.jezyk=jezyki.id WHERE jezyki.jezyk='"+WyborJezykaController.jezyk+"' AND owner="+ LogowanieController.id+";");
+            ResultSet wynik = baza.getResult("SELECT zestawy.nazwa,owner,jezyki.jezyk, zestawy.id FROM zestawy JOIN jezyki ON zestawy.jezyk=jezyki.id WHERE jezyki.jezyk='"+WyborJezykaController.jezyk+"' AND owner="+ LogowanieController.id+";");
             while(wynik.next())
             {
+                id = wynik.getInt(4);
                 z = wynik.getString(1);
-                zestawy.add(new Jezyk(z));
+                jezyk_zestawu = wynik.getString(3);
+                zestawy.add(new Zestaw(z,id,jezyk_zestawu));
             }
         }
         catch (SQLException e)
@@ -65,6 +69,6 @@ public class WyborZestawuController implements Initializable {
         }
 
         lista_zestawy.itemsProperty().setValue(zestawy);
-        kol_zestaw.setCellValueFactory(new PropertyValueFactory<Jezyk, String>("jezyk"));
+        kol_zestaw.setCellValueFactory(new PropertyValueFactory<Zestaw, String>("zestaw"));
     }
 }

@@ -42,6 +42,7 @@ public class WyborJezykaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -49,14 +50,16 @@ public class WyborJezykaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<Jezyk> jezyki = FXCollections.observableArrayList();
         String j;
+        int id;
 
         try
         {
             ResultSet wynik = baza.getResult("SELECT * FROM jezyki;");
             while(wynik.next())
             {
+                id = wynik.getInt(1);
                 j = wynik.getString(2);
-                jezyki.add(new Jezyk(j));
+                jezyki.add(new Jezyk(j, id));
             }
         }
         catch (SQLException e)

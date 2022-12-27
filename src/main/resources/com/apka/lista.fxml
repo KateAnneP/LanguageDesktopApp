@@ -20,6 +20,11 @@
                <font>
                   <Font name="System Italic" size="18.0" />
                </font></Button>
+            <Button fx:id="przycisk_powrot" layoutY="130.0" mnemonicParsing="false" onAction="#powrotAction" prefHeight="39.0" prefWidth="156.0" text="Powrót">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
         <Pane layoutX="156.0" prefHeight="400.0" prefWidth="446.0">
@@ -31,16 +36,22 @@
             <font>
                <Font name="System Italic" size="12.0" />
             </font></Button>
-         <Button fx:id="przycisk_powrot" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" onAction="#powrotAction" prefHeight="39.0" prefWidth="156.0" text="Powrót">
-            <font>
-               <Font name="System Italic" size="18.0" />
-            </font></Button>
          <TableView fx:id="lista_slowka" layoutX="18.0" layoutY="65.0" prefHeight="258.0" prefWidth="410.0">
            <columns>
              <TableColumn fx:id="kolumna_slowko" editable="false" prefWidth="205.0" text="Słówko" />
              <TableColumn fx:id="kolumna_tlumaczenie" editable="false" prefWidth="204.0" text="Tłumaczenie" />
            </columns>
          </TableView>
+         <Button fx:id="przycisk_usun" layoutX="308.0" layoutY="14.0" mnemonicParsing="false" onAction="#usunWybraneSlowkoAction" onMouseEntered="#wyswietlPodpowiedzUsuwanieAction" onMouseExited="#schowajPodpowiedzAction" prefHeight="39.0" prefWidth="120.0" text="Usuń">
+            <font>
+               <Font name="System Italic" size="18.0" />
+            </font>
+         </Button>
+         <TextArea fx:id="podpowiedz" editable="false" layoutX="60.0" layoutY="60.0" prefHeight="80.0" prefWidth="250.0" visible="false" />
+         <Button fx:id="przycisk_edytuj" layoutX="164.0" layoutY="14.0" mnemonicParsing="false" onAction="#otworzEdytorAction" onMouseEntered="#wyswietlPodpowiedzEdytowanieAction" onMouseExited="#schowajPodpowiedzAction" prefHeight="39.0" prefWidth="120.0" text="Edytuj">
+            <font>
+               <Font name="System Italic" size="18.0" />
+            </font></Button>
         </Pane>
     </children>
 </AnchorPane>
