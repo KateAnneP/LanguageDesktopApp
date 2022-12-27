@@ -36,12 +36,17 @@ public class PisanieController implements Initializable {
     @FXML public Button przycisk_odp;
     @FXML public Button przycisk_nastepny;
     @FXML public Label etykieta_odliczanie;
+    @FXML public Button przycisk_aGer;
+    @FXML public Button przycisk_oGer;
+    @FXML public Button przycisk_uGer;
+    @FXML public Button przycisk_ssGer;
+    @FXML public Button przycisk_powrot;
 
     ObservableList<Fiszka> slowka = FXCollections.observableArrayList();
 
     Mysql baza = MainApplication.getInstance().getSql();
 
-    public int i, id_kategorii, id_jezyka;
+    public int i, id_kategorii, id_jezyka, id_zestawu;
     public int fool_count = 0;
     public Optional<ButtonType> result;
 
@@ -51,12 +56,24 @@ public class PisanieController implements Initializable {
     }
 
     @FXML
+    public void powrotAction(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("menu_zestawu.fxml"));
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
+        stage.show();
+    }
+
+    @FXML
     public void zmienZestawAction(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -67,6 +84,7 @@ public class PisanieController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -157,7 +175,7 @@ public class PisanieController implements Initializable {
     {
         String slowko, tlumaczenie;
         try {
-            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND jezyk='"+ id_jezyka +"';");
+            ResultSet wynik = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,zestawy.jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND zestawy.jezyk='"+ id_jezyka +"';");
             while (wynik.next()) {
                 slowko = wynik.getString(1);
                 tlumaczenie = wynik.getString(2);
@@ -165,6 +183,7 @@ public class PisanieController implements Initializable {
             }
         } catch (SQLException e) {}
         Collections.shuffle(slowka);
+
 //        for (int i = 0; i < slowka.toArray().length; i++)
 //        {
 //            System.out.println(slowka.get(i));
@@ -173,24 +192,62 @@ public class PisanieController implements Initializable {
 
     public void wczytajNastepnyZestaw()
     {
-        id_kategorii++;
-        String nazwa, slowko, tlumaczenie;
+        //wczytywanie następnego zestawu
+        if(WyborZestawuController.wybrane2 == 2) {
+            int id = 0;
+            String slowko, tlumaczenie;
+            boolean nastepny = false;
 
-        try {
-            ResultSet wynik = baza.getResult("SELECT nazwa FROM kategorie WHERE id="+id_kategorii+";");
-            wynik.next();
-            nazwa = wynik.getString(1);
             try {
-                ResultSet wynik2 = baza.getResult("SELECT slowko,tlumaczenie,kategorie.nazwa,jezyk FROM slowka JOIN kategorie ON slowka.kategoria=kategorie.id WHERE kategorie.nazwa='" + nazwa + "' AND jezyk='"+ id_jezyka +"';");
-                while (wynik2.next()) {
-                    slowko = wynik2.getString(1);
-                    tlumaczenie = wynik2.getString(2);
-                    slowka.add(new Fiszka(slowko, tlumaczenie));
+                ResultSet wynik = baza.getResult("SELECT id FROM zestawy WHERE jezyk="+ id_jezyka +";");
+                while (wynik.next()) {
+                    id = wynik.getInt(1);
+                    if (!nastepny) {
+                        if (id == id_zestawu) {
+                            id++;
+                            nastepny = true;
+                        }
+                    }
+                    else {
+                        id_zestawu = id;
+                        break;
+                    }
                 }
-            } catch (SQLException e) {}
+                System.out.println(id);
+                try {
+                    ResultSet wynik2 = baza.getResult("SELECT slowko,tlumaczenie,zestawy.nazwa,zestawy.jezyk FROM slowka JOIN zestawy ON slowka.zestaw=zestawy.id WHERE zestawy.id = '"+ id_zestawu +"';");
+                    while (wynik2.next()) {
+                        slowko = wynik2.getString(1);
+                        tlumaczenie = wynik2.getString(2);
+                        slowka.add(new Fiszka(slowko, tlumaczenie));
+                    }
+                } catch (SQLException e) {}
+            }
+            catch (SQLException e){}
+            Collections.shuffle(slowka);
         }
-        catch (SQLException e){}
-        Collections.shuffle(slowka);
+        //wczytywanie następnej kategorii
+        else {
+            id_kategorii++;
+            String nazwa, slowko, tlumaczenie;
+
+            try {
+                ResultSet wynik = baza.getResult("SELECT nazwa FROM kategorie WHERE id="+id_kategorii+";");
+                wynik.next();
+                nazwa = wynik.getString(1);
+                try {
+                    ResultSet wynik2 = baza.getResult("SELECT slowko,tlumaczenie,kategorie.nazwa,jezyk FROM slowka JOIN kategorie ON slowka.kategoria=kategorie.id WHERE kategorie.nazwa='" + nazwa + "' AND jezyk='"+ id_jezyka +"';");
+                    while (wynik2.next()) {
+                        slowko = wynik2.getString(1);
+                        tlumaczenie = wynik2.getString(2);
+                        slowka.add(new Fiszka(slowko, tlumaczenie));
+                    }
+                } catch (SQLException e) {}
+            }
+            catch (SQLException e){}
+            Collections.shuffle(slowka);
+        }
+
     }
 
 
@@ -222,6 +279,22 @@ public class PisanieController implements Initializable {
         return dobrze;
     }
 
+    public void wpisz_aGer(ActionEvent actionEvent) {
+        pole_jezyk2.setText(pole_jezyk2.getText().toString() + "ä");
+    }
+
+    public void wpisz_oGer(ActionEvent actionEvent) {
+        pole_jezyk2.setText(pole_jezyk2.getText().toString() + "ö");
+    }
+
+    public void wpisz_uGer(ActionEvent actionEvent) {
+        pole_jezyk2.setText(pole_jezyk2.getText().toString() + "ü");
+    }
+
+    public void wpisz_ssGer(ActionEvent actionEvent) {
+        pole_jezyk2.setText(pole_jezyk2.getText().toString() + "ß");
+    }
+
     public void onEnter(KeyEvent keyEvent)
     {
         if(keyEvent.getCode().equals(KeyCode.ENTER)) {
@@ -231,6 +304,7 @@ public class PisanieController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             ResultSet wynik = baza.getResult("SELECT id FROM kategorie WHERE kategorie.nazwa='" + WyborKategoriiController.kategoria + "';");
             wynik.next();
@@ -243,6 +317,14 @@ public class PisanieController implements Initializable {
             ResultSet wynik = baza.getResult("SELECT id FROM jezyki WHERE jezyk='" + WyborJezykaController.jezyk + "';");
             wynik.next();
             id_jezyka = wynik.getInt(1);
+        }
+        catch (SQLException e) {
+        }
+
+        try {
+            ResultSet wynik = baza.getResult("SELECT id FROM zestawy WHERE zestawy.nazwa='" + WyborZestawuController.zestaw + "' AND jezyk='"+ id_jezyka +"';");
+            wynik.next();
+            id_zestawu = wynik.getInt(1);
         }
         catch (SQLException e) {
         }
@@ -264,6 +346,12 @@ public class PisanieController implements Initializable {
 
         etykieta_jezyk1.setText("polski: ");
         etykieta_jezyk2.setText(WyborJezykaController.jezyk+": ");
-    }
 
+        if(WyborJezykaController.jezyk.equals("niemiecki")) {
+            przycisk_aGer.setVisible(true);
+            przycisk_oGer.setVisible(true);
+            przycisk_uGer.setVisible(true);
+            przycisk_ssGer.setVisible(true);
+        }
+    }
 }

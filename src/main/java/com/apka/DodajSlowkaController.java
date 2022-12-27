@@ -66,7 +66,7 @@ public class DodajSlowkaController implements Initializable {
         catch(SQLException e) {}
 
         try {
-            ResultSet wynik = baza.getResult("SELECT id FROM zestawy WHERE nazwa='"+MenuDodawanieController.wybranyZestaw+ "';");
+            ResultSet wynik = baza.getResult("SELECT id FROM zestawy WHERE nazwa='"+MenuDodawanieController.wybranyZestaw+ "' AND jezyk='"+ jezyk +"';");
             wynik.next();
             zestaw = wynik.getInt(1);
         }
@@ -80,6 +80,7 @@ public class DodajSlowkaController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 

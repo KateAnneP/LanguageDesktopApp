@@ -40,6 +40,7 @@ public class MenuDodawanieController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -55,6 +56,7 @@ public class MenuDodawanieController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
@@ -65,21 +67,24 @@ public class MenuDodawanieController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Apka do nauki języków");
+        scene.getStylesheets().add("style.css");
         stage.show();
     }
 
     public void wczytajKategorie()
     {
-        ObservableList<Jezyk> kategorie = FXCollections.observableArrayList();
+        ObservableList<Kategoria> kategorie = FXCollections.observableArrayList();
         String k;
+        int id;
 
         try
         {
             ResultSet wynik = baza.getResult("SELECT * FROM kategorie;");
             while(wynik.next())
             {
+                id = wynik.getInt(1);
                 k = wynik.getString(2);
-                kategorie.add(new Jezyk(k));
+                kategorie.add(new Kategoria(k,id));
             }
         }
         catch (SQLException e)
@@ -88,30 +93,33 @@ public class MenuDodawanieController implements Initializable {
         }
 
         tabela_kategorie.itemsProperty().setValue(kategorie);
-        kolumna_kategoria.setCellValueFactory(new PropertyValueFactory<Jezyk, String>("jezyk"));
+        kolumna_kategoria.setCellValueFactory(new PropertyValueFactory<Kategoria, String>("kategoria"));
     }
 
     public void wczytajZestawy()
     {
-        ObservableList<Jezyk> zestawy = FXCollections.observableArrayList();
-        String z;
+        ObservableList<Zestaw> zestawy = FXCollections.observableArrayList();
+        String z,jezyk_zestawu;
+        int id;
 
         try
         {
-            ResultSet wynik = baza.getResult("SELECT zestawy.nazwa,owner,jezyki.jezyk FROM zestawy JOIN jezyki ON zestawy.jezyk=jezyki.id WHERE jezyki.jezyk='"+WyborJezykaController.jezyk+"' AND owner="+ LogowanieController.id+";");
+            ResultSet wynik = baza.getResult("SELECT zestawy.nazwa,owner,jezyki.jezyk,zestawy.id FROM zestawy JOIN jezyki ON zestawy.jezyk=jezyki.id WHERE jezyki.jezyk='"+WyborJezykaController.jezyk+"' AND owner="+ LogowanieController.id+";");
             while(wynik.next())
             {
+                id = wynik.getInt(4);
                 z = wynik.getString(1);
-                zestawy.add(new Jezyk(z));
+                jezyk_zestawu = wynik.getString(3);
+                zestawy.add(new Zestaw(z,id,jezyk_zestawu));
             }
         }
         catch (SQLException e)
         {
-            System.out.println("Nie udało się wczytać listy kategorii");
+            System.out.println("Nie udało się wczytać listy zestawów");
         }
 
         tabela_zestawy.itemsProperty().setValue(zestawy);
-        kolumna_zestawy.setCellValueFactory(new PropertyValueFactory<Jezyk, String>("jezyk"));
+        kolumna_zestawy.setCellValueFactory(new PropertyValueFactory<Zestaw, String>("zestaw"));
     }
 
     @Override
