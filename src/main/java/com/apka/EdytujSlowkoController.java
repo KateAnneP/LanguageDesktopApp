@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +33,8 @@ public class EdytujSlowkoController implements Initializable {
     @FXML public ChoiceBox lista_jezyki;
     @FXML public ChoiceBox lista_kategorie;
     @FXML public ChoiceBox lista_zestawy;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
 
     String slowko, tlumaczenie;
     int jezyk, kategoria, zestaw;   //zmienne do których przypisywane są wartości id dot. słówka w bazie danych
@@ -158,11 +162,14 @@ public class EdytujSlowkoController implements Initializable {
         }
         System.out.println("Do update'u: " + nowy_jezyk + "/" + nowa_kategoria + "/" + nowy_zestaw);
         System.out.println((nowyJ_id + "/" + nowaK_id + "/" + nowyZ_id));
-        //baza.update("UPDATE slowka SET slowko='"+ nowe_slowko +"',tlumaczenie='"+ nowe_tlumaczenie +"',jezyk='"+ nowyJ_id +"',kategoria='"+ nowaK_id +"',zestaw='"+ nowyZ_id +"' WHERE slowko='"+ slowko +"' AND tlumaczenie='"+ tlumaczenie +"' AND jezyk='"+ jezyk +"';");
+        baza.update("UPDATE slowka SET slowko='"+ nowe_slowko +"',tlumaczenie='"+ nowe_tlumaczenie +"',jezyk='"+ nowyJ_id +"',kategoria='"+ nowaK_id +"',zestaw='"+ nowyZ_id +"' WHERE slowko='"+ slowko +"' AND tlumaczenie='"+ tlumaczenie +"' AND jezyk='"+ jezyk +"';");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+
         slowko = ListaController.slowko1;
         tlumaczenie = ListaController.tlumaczenie1;
 

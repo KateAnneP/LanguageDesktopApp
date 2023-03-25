@@ -3,15 +3,19 @@ package com.apka;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,9 +26,12 @@ import java.util.ResourceBundle;
 
 public class WyborKategoriiController implements Initializable {
 
-    public Button przycisk_wybor;
-    public TableColumn kol_kategoria;
-    public TableView lista_kategorie;
+    @FXML public Button przycisk_wybor;
+    @FXML public TableColumn kol_kategoria;
+    @FXML public TableView lista_kategorie;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
+    @FXML public Label label_wybrany_jezyk;
 
 
     Mysql baza = MainApplication.getInstance().getSql();
@@ -49,6 +56,9 @@ public class WyborKategoriiController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+
         ObservableList<Kategoria> kategorie = FXCollections.observableArrayList();
         String k;
         int id;
@@ -70,5 +80,7 @@ public class WyborKategoriiController implements Initializable {
 
         lista_kategorie.itemsProperty().setValue(kategorie);
         kol_kategoria.setCellValueFactory(new PropertyValueFactory<Kategoria, String>("kategoria"));
+
+        label_wybrany_jezyk.setText("Wybrany język: " + WyborJezykaController.jezyk);
     }
 }

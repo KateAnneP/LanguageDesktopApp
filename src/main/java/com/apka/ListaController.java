@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,6 +38,9 @@ public class ListaController implements Initializable {
     @FXML public TableView lista_slowka;
     @FXML public Button przycisk_usun;
     @FXML public TextArea podpowiedz;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
+    @FXML public Pane pane1;
 
     Mysql baza = MainApplication.getInstance().getSql();
     ObservableList<Fiszka> slowka = FXCollections.observableArrayList();
@@ -260,6 +265,10 @@ public class ListaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+        pane1.getStyleClass().add("pane1");
+
         try {
             ResultSet wynik = baza.getResult("SELECT id FROM kategorie WHERE kategorie.nazwa='" + WyborKategoriiController.kategoria + "';");
             wynik.next();

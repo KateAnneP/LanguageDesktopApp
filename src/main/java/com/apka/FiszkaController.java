@@ -10,10 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,12 +23,15 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class FiszkaController implements Initializable {
-    @FXML public TextField pole_fiszka;
+    @FXML public Label pole_fiszka;
     @FXML public Button przycisk_wstecz;
     @FXML public Button przycisk_dalej;
     @FXML public Button przycisk_zmien_jezyk;
     @FXML public Button przycisk_zmien_zestaw;
     @FXML public Button przycisk_powrot;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
+    @FXML public Pane pane1;
 
     Mysql baza = MainApplication.getInstance().getSql();
 
@@ -151,6 +154,10 @@ public class FiszkaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+        pane1.getStyleClass().add("pane1");
+
         try {
             ResultSet wynik = baza.getResult("SELECT id FROM jezyki WHERE jezyk='" + WyborJezykaController.jezyk + "';");
             wynik.next();

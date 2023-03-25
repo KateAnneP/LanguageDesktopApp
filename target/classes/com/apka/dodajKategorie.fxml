@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.DodajKategorieController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.DodajKategorieController">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+      <Pane fx:id="pane" layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
          <children>
             <Label layoutX="31.0" layoutY="32.0" text="Wpisz nazwę kategorii, którą chcesz utworzyć:">
                <font>
