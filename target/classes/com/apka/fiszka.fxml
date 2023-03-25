@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.FiszkaController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.FiszkaController">
     <children>
-        <Pane prefHeight="400.0" prefWidth="156.0">
+        <Pane fx:id="pane1" prefHeight="400.0" prefWidth="156.0">
          <children>
             <Button layoutX="-1.0" layoutY="361.0" mnemonicParsing="false" onAction="#zamknijAction" prefHeight="39.0" prefWidth="156.0" text="Zamknij aplikację">
                <font>
@@ -26,13 +26,8 @@
                </font></Button>
          </children>
         </Pane>
-        <Pane layoutX="156.0" prefHeight="400.0" prefWidth="446.0">
+        <Pane fx:id="pane" layoutX="156.0" prefHeight="400.0" prefWidth="446.0">
          <children>
-            <TextField fx:id="pole_fiszka" alignment="CENTER" editable="false" layoutX="19.0" layoutY="20.0" onMouseClicked="#zmienFiszkeAction" prefHeight="277.0" prefWidth="408.0" promptText="fiszka">
-               <font>
-                  <Font name="System Italic" size="36.0" />
-               </font>
-            </TextField>
             <Button fx:id="przycisk_wstecz" layoutX="172.0" layoutY="308.0" mnemonicParsing="false" onAction="#wsteczAction" text="&lt;--">
                <font>
                   <Font name="System Italic" size="14.0" />
@@ -43,6 +38,11 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="pole_fiszka" alignment="CENTER" layoutX="22.0" layoutY="22.0" onMouseClicked="#zmienFiszkeAction" prefHeight="263.0" prefWidth="403.0" style="-fx-background-color: #c6afe0; -fx-border-color: grey; -fx-border-width: 1px; -fx-border-radius: 2px;" text="fiszka" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="36.0" />
+               </font>
+            </Label>
          </children></Pane>
     </children>
 </AnchorPane>

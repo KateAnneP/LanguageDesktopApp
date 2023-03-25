@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.WyborKategoriiController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.WyborKategoriiController">
    <children>
-      <Pane layoutX="0" layoutY="0" prefHeight="400.0" prefWidth="600.0">
+      <Pane fx:id="pane" layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
          <children>
             <Button fx:id="przycisk_wybor" layoutX="402.0" layoutY="312.0" mnemonicParsing="false" onAction="#wybierzKategorieAction" prefHeight="56.0" prefWidth="149.0" text="Wybierz">
                <font>
@@ -21,6 +21,11 @@
                 <TableColumn fx:id="kol_kategoria" editable="false" prefWidth="272.0" />
               </columns>
             </TableView>
+            <Label fx:id="label_wybrany_jezyk" layoutX="34.0" layoutY="330.0" text="Wybrany język: hiszpański" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>

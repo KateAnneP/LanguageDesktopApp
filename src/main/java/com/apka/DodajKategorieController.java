@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +24,8 @@ public class DodajKategorieController implements Initializable {
     @FXML public TextField pole_kategoria;
     @FXML public Button przycisk_powrot;
     @FXML public TextField pole_zestaw;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
 
     Mysql baza = MainApplication.getInstance().getSql();
     public int jezyk;
@@ -69,5 +73,7 @@ public class DodajKategorieController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
     }
 }

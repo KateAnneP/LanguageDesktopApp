@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +43,9 @@ public class PisanieController implements Initializable {
     @FXML public Button przycisk_uGer;
     @FXML public Button przycisk_ssGer;
     @FXML public Button przycisk_powrot;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
+    @FXML public Pane pane1;
 
     ObservableList<Fiszka> slowka = FXCollections.observableArrayList();
 
@@ -304,6 +309,9 @@ public class PisanieController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+        pane1.getStyleClass().add("pane1");
 
         try {
             ResultSet wynik = baza.getResult("SELECT id FROM kategorie WHERE kategorie.nazwa='" + WyborKategoriiController.kategoria + "';");

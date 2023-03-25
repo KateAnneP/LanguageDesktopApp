@@ -3,6 +3,7 @@ package com.apka;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -13,6 +14,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,9 +28,11 @@ import java.net.URL;
 
 public class WyborJezykaController implements Initializable {
 
-    public Button przycisk_wybor;
-    public TableView lista_jezyki;
-    public TableColumn kol_jezyki;
+    @FXML public Button przycisk_wybor;
+    @FXML public TableView lista_jezyki;
+    @FXML public TableColumn kol_jezyki;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
 
     Mysql baza = MainApplication.getInstance().getSql();
 
@@ -48,6 +53,9 @@ public class WyborJezykaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+
         ObservableList<Jezyk> jezyki = FXCollections.observableArrayList();
         String j;
         int id;

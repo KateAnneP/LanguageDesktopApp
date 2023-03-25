@@ -9,6 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +26,9 @@ public class MenuController implements Initializable {
     @FXML public Button przycisk_wszystkie_slowka;
     @FXML public Button przycisk_zamknij;
     @FXML public Button przycisk_dodaj_slowka;
+    @FXML public Label label_wybrany_jezyk;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
     public static boolean wszystkie=false;
 
 
@@ -92,6 +98,8 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
+        label_wybrany_jezyk.setText("Wybrany język: " + WyborJezykaController.jezyk);
     }
 }

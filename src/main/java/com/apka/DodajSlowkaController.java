@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +26,8 @@ public class DodajSlowkaController implements Initializable {
     @FXML public TextField pole_slowko;
     @FXML public TextField pole_tlumaczenie;
     @FXML public Label etykieta_sukces;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
 
     Mysql baza = MainApplication.getInstance().getSql();
 
@@ -86,6 +90,7 @@ public class DodajSlowkaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
     }
 }

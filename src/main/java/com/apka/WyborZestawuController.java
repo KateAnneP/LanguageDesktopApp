@@ -3,15 +3,19 @@ package com.apka;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,9 +26,12 @@ import java.util.ResourceBundle;
 
 public class WyborZestawuController implements Initializable {
 
-    public Button przycisk_wybor;
-    public TableView lista_zestawy;
-    public TableColumn kol_zestaw;
+    @FXML public Button przycisk_wybor;
+    @FXML public TableView lista_zestawy;
+    @FXML public TableColumn kol_zestaw;
+    @FXML public AnchorPane anchorPane;
+    @FXML public Pane pane;
+    @FXML public Label label_wybrany_jezyk;
 
     Mysql baza = MainApplication.getInstance().getSql();
 
@@ -48,6 +55,8 @@ public class WyborZestawuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        anchorPane.getStyleClass().add("anchorPane");
+        pane.getStyleClass().add("pane");
         ObservableList<Zestaw> zestawy = FXCollections.observableArrayList();
         String z, jezyk_zestawu;
         int id;
@@ -70,5 +79,7 @@ public class WyborZestawuController implements Initializable {
 
         lista_zestawy.itemsProperty().setValue(zestawy);
         kol_zestaw.setCellValueFactory(new PropertyValueFactory<Zestaw, String>("zestaw"));
+
+        label_wybrany_jezyk.setText("Wybrany język: " + WyborJezykaController.jezyk);
     }
 }

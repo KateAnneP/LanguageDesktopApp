@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.MenuZestawuController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.apka.MenuZestawuController">
    <children>
-      <Pane layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
+      <Pane fx:id="pane" layoutX="5.0" layoutY="5.0" prefHeight="390.0" prefWidth="590.0">
          <children>
-            <Button fx:id="przycisk_fiszki" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlFiszkiAction" prefHeight="228.0" prefWidth="176.0" text="Fiszki">
+            <Button fx:id="przycisk_fiszki" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#wyswietlFiszkiAction" prefHeight="228.0" prefWidth="176.0" text="Fiszki">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font></Button>
-            <Button fx:id="przycisk_pisanie" layoutX="207.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlPisanieAction" prefHeight="228.0" prefWidth="176.0" text="Pisanie">
+            <Button fx:id="przycisk_pisanie" layoutX="207.0" layoutY="24.0" mnemonicParsing="false" onAction="#wyswietlPisanieAction" prefHeight="228.0" prefWidth="176.0" text="Pisanie">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font></Button>
-            <Button fx:id="przycisk_lista" layoutX="400.0" layoutY="14.0" mnemonicParsing="false" onAction="#wyswietlListeAction" prefHeight="228.0" prefWidth="176.0" text="Lista słówek">
+            <Button fx:id="przycisk_lista" layoutX="400.0" layoutY="24.0" mnemonicParsing="false" onAction="#wyswietlListeAction" prefHeight="228.0" prefWidth="176.0" text="Lista słówek">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font></Button>
@@ -35,6 +35,16 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="label_wybrany_jezyk" layoutX="14.0" layoutY="283.0" text="Wybrany język: hiszpański" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_wybrany_zestaw" layoutX="207.0" layoutY="283.0" text="Wybrany zestaw: pory roku i miesiące" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </AnchorPane>
